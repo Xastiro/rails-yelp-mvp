@@ -1,0 +1,16 @@
+<div class="mt-2">
+  <h1 class="d-inline p-2">Restaurants</h1>
+  <%= link_to "Add", new_restaurant_path, class: "btn btn-success d-inline p-2 float-end" %>
+</div>
+
+<ul class="list-group mt-3">
+  <% @restaurants.each do |restaurant| %>
+    <%= link_to restaurant_path(restaurant), class: "link", :action => 'go' do %>
+      <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%= restaurant.name %>
+        <%= restaurant.reviews.size == 0 ? avg = 1 : avg = restaurant.reviews.sum {|h| h[:rating] } / restaurant.reviews.size  %>
+        <span class="badge badge-primary badge-pill"><%= "⭐" * avg.floor %></span>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
