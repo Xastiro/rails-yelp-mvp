@@ -8,7 +8,7 @@
     <%= link_to restaurant_path(restaurant), class: "link", :action => 'go' do %>
       <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
         <%= restaurant.name %>
-        <%= restaurant.reviews.size == 0 ? avg = 1 : avg = restaurant.reviews.sum {|h| h[:rating] } / restaurant.reviews.size  %>
+        <% restaurant.reviews.size == 0 ? avg = 1 : avg = restaurant.reviews.sum {|h| h[:rating] } / restaurant.reviews.size  %>
         <span class="badge badge-primary badge-pill"><%= "⭐" * avg.floor %></span>
       </li>
     <% end %>
